@@ -1,0 +1,240 @@
+C++'ta iş parçacıkları (threads) ve görevler (tasks) paralel programlama ve eşzamanlılık için kullanılan temel yapı taşlarıdır. İş parçacıkları, programın aynı anda birden fazla iş yapabilmesini sağlar. Görevler, belirli iş parçacıklarında çalışacak daha soyut işlemlerdir. C++'ta iş parçacıkları ve görevlerle ilgili yapılar ve kullanım senaryoları hakkında ayrıntılı bir açıklama yapalım.
+
+İş Parçacıkları (Threads)
+C++11 ile birlikte gelen <thread> kütüphanesi, iş parçacıkları oluşturmak ve yönetmek için kullanılır.
+
+Temel İş Parçacığı Kullanımı
+Bir iş parçacığı oluşturmak için std::thread kullanılır. İş parçacıkları bağımsız olarak çalışabilir ve ana iş parçacığına katılabilir (join).
+
+Örnek:
+cpp
+Copy code
+#include <iostream>
+#include <thread>
+
+// İş parçacığının çalıştıracağı fonksiyon
+void threadFunction() {
+    std::cout << "Thread is running\n";
+}
+
+int main() {
+    // İş parçacığını oluştur ve başlat
+    std::thread t(threadFunction);
+
+    // Ana iş parçacığına katılmasını bekle
+    t.join();
+
+    return 0;
+}
+İş Parçacığı ile Parametre Geçmek
+İş parçacıklarına parametre geçirmek için lambda fonksiyonları veya std::bind kullanılabilir.
+
+Örnek:
+cpp
+Copy code
+#include <iostream>
+#include <thread>
+
+void threadFunction(int x) {
+    std::cout << "Thread is running with value: " << x << "\n";
+}
+
+int main() {
+    int value = 10;
+
+    // İş parçacığını parametre ile oluştur ve başlat
+    std::thread t(threadFunction, value);
+
+    // Ana iş parçacığına katılmasını bekle
+    t.join();
+
+    return 0;
+}
+İş Parçacıklarını Bağlamak (Joining) ve Ayrıştırmak (Detaching)
+Bir iş parçacığı oluşturduktan sonra, join() veya detach() fonksiyonları ile yönetilebilir.
+
+join(): İş parçacığının ana iş parçacığına katılmasını bekler.
+detach(): İş parçacığını ayrıştırır, iş parçacığı bağımsız olarak çalışmaya devam eder.
+Örnek:
+cpp
+Copy code
+#include <iostream>
+#include <thread>
+
+void threadFunction() {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::cout << "Thread has finished\n";
+}
+
+int main() {
+    std::thread t(threadFunction);
+
+    // t.join(); // Ana iş parçacığına katılmasını bekler
+    t.detach(); // İş parçacığını ayrıştırır
+
+    std::cout << "Main function ends\n";
+
+    return 0;
+}
+Mutex ve Lock
+Çoklu iş parçacıkları arasında veri yarışını önlemek için std::mutex ve std::lock_guard kullanılır.
+
+Örnek:
+cpp
+Copy code
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+std::mutex mtx;
+
+void printMessage(const std::string& message) {
+    std::lock_guard<std::mutex> guard(mtx);
+    std::cout << message << "\n";
+}
+
+int main() {
+    std::thread t1(printMessage, "Hello from thread 1");
+    std::thread t2(printMessage, "Hello from thread 2");
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+Görevler (Tasks)
+Görevler, iş parçacıklarının daha soyut bir şeklidir ve std::async ve std::future kullanılarak oluşturulur.
+
+Temel Görev Kullanımı
+std::async bir görevi başlatır ve std::future ile sonuç alınır.
+
+Örnek:
+cpp
+Copy code
+#include <iostream>
+#include <future>
+
+int compute() {
+    return 42;
+}
+
+int main() {
+    // Görevi başlat ve sonucunu future ile al
+    std::future<int> result = std::async(compute);
+
+    // Sonucu bekle ve al
+    std::cout << "Result is: " << result.get() << "\n";
+
+    return 0;
+}
+Görevler ile Lambda Fonksiyonları
+Örnek:
+cpp
+Copy code
+#include <iostream>
+#include <future>
+
+int main() {
+    // Lambda fonksiyonu ile görev oluştur
+    std::future<int> result = std::async([]() -> int {
+        return 42;
+    });
+
+    // Sonucu bekle ve al
+    std::cout << "Result is: " << result.get() << "\n";
+
+    return 0;
+}
+İş Parçacığı Havuzları (Thread Pools)
+İş parçacığı havuzları, iş parçacıklarının oluşturulmasını ve yönetilmesini kolaylaştırır. C++'ta doğrudan bir iş parçacığı havuzu desteği yoktur, ancak çeşitli kütüphaneler ve manuel implementasyonlar kullanılır.
+
+Basit İş Parçacığı Havuzu Örneği:
+cpp
+Copy code
+#include <iostream>
+#include <vector>
+#include <thread>
+#include <queue>
+#include <functional>
+#include <condition_variable>
+
+class ThreadPool {
+public:
+    ThreadPool(size_t numThreads);
+    ~ThreadPool();
+
+    template<class F, class... Args>
+    void enqueue(F&& f, Args&&... args);
+
+private:
+    std::vector<std::thread> workers;
+    std::queue<std::function<void()>> tasks;
+
+    std::mutex queueMutex;
+    std::condition_variable condition;
+    bool stop;
+
+    void worker();
+};
+
+ThreadPool::ThreadPool(size_t numThreads) : stop(false) {
+    for (size_t i = 0; i < numThreads; ++i)
+        workers.emplace_back([this] { this->worker(); });
+}
+
+ThreadPool::~ThreadPool() {
+    {
+        std::unique_lock<std::mutex> lock(queueMutex);
+        stop = true;
+    }
+    condition.notify_all();
+    for (std::thread &worker : workers)
+        worker.join();
+}
+
+void ThreadPool::worker() {
+    while (true) {
+        std::function<void()> task;
+        {
+            std::unique_lock<std::mutex> lock(this->queueMutex);
+            this->condition.wait(lock, [this] { return this->stop || !this->tasks.empty(); });
+            if (this->stop && this->tasks.empty())
+                return;
+            task = std::move(this->tasks.front());
+            this->tasks.pop();
+        }
+        task();
+    }
+}
+
+template<class F, class... Args>
+void ThreadPool::enqueue(F&& f, Args&&... args) {
+    {
+        std::unique_lock<std::mutex> lock(queueMutex);
+        tasks.emplace([f, args...]() { f(args...); });
+    }
+    condition.notify_one();
+}
+
+int main() {
+    ThreadPool pool(4);
+
+    for (int i = 0; i < 8; ++i) {
+        pool.enqueue([i] {
+            std::cout << "Task " << i << " is running\n";
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::cout << "Task " << i << " has finished\n";
+        });
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    return 0;
+}
+Sonuç
+C++'ta iş parçacıkları ve görevler kullanarak eşzamanlı ve paralel programlama yapabilirsiniz. std::thread iş parçacıkları oluşturmak ve yönetmek için kullanılırken, std::async ve std::future görevler ve onların sonuçlarını almak için kullanılır. std::mutex ve std::lock_guard veri yarışlarını önlemek için kullanılır. İş parçacığı havuzları ise, iş parçacıklarının oluşturulmasını ve yönetilmesini daha verimli hale getirir.
+
+
+
+
+
+
