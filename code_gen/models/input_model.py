@@ -1,0 +1,45 @@
+class InputParameterModel:
+
+    def __init__(
+        self,
+        type: str = int,
+        name: str = "",
+        is_parallel: bool = False,
+        is_other_size: bool = False,
+        is_init: bool = False,
+    ):
+        self.type_ = type
+        self.name_ = name
+        self.is_parallel_ = is_parallel
+        self.is_other_size_ = is_other_size
+        self.is_init_ = is_init
+
+    def set_type(self, type):
+        self.type_ = type
+
+    def set_name(self, name):
+        self.name_ = name
+
+    def set_is_parallel(self, parallel):
+        self.is_parallel_ = parallel
+
+    def set_is_other_size(self, other_size):
+        self.is_other_size_ = other_size
+
+    def set_init(self, init):
+        self.is_init_ = init
+
+    def get_type(self):
+        return self.type_
+
+    def get_name(self):
+        return self.name_
+
+    def get_is_parallel(self):
+        return self.is_parallel_
+
+    def get_is_other_size(self):
+        return self.is_other_size_
+
+    def get_init(self):
+        return self.is_init_
