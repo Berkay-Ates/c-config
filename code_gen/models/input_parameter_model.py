@@ -43,3 +43,10 @@ class InputParameterModel:
 
     def get_init(self):
         return self.is_init_
+
+    def __str__(self):
+        return (
+            f"InputParameterModel(type={self.type_}, name='{self.name_}', "
+            f"is_parallel={self.is_parallel_}, is_other_size={self.is_other_size_}, "
+            f"is_init={self.is_init_})"
+        )

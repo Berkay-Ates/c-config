@@ -1,2 +1,3 @@
 from .main_page_controller import MainWindowController
 from .input_param_controller import InputParameterController
+from .output_param_controller import OutputParameterController

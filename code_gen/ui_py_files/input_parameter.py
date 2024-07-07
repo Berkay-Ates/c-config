@@ -14,9 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(567, 42)
+        Form.resize(624, 44)
         self.gridLayout = QtWidgets.QGridLayout(Form)
         self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.comboBox = QtWidgets.QComboBox(Form)
@@ -40,7 +42,8 @@ class Ui_Form(object):
         self.checkBox_3 = QtWidgets.QCheckBox(Form)
         self.checkBox_3.setObjectName("checkBox_3")
         self.horizontalLayout.addWidget(self.checkBox_3)
-        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

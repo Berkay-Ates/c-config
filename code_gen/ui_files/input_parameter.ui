@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>567</width>
-    <height>42</height>
+    <width>624</width>
+    <height>44</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,64 +15,68 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QComboBox" name="comboBox">
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <property name="text">
-         <string>int</string>
-        </property>
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>int</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>float</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>double</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>int*</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>float*</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>double*</string>
+          </property>
+         </item>
+        </widget>
        </item>
        <item>
-        <property name="text">
-         <string>float</string>
-        </property>
+        <widget class="QLineEdit" name="lineEdit"/>
        </item>
        <item>
-        <property name="text">
-         <string>double</string>
-        </property>
+        <widget class="QCheckBox" name="checkBox">
+         <property name="text">
+          <string>Parallel</string>
+         </property>
+        </widget>
        </item>
        <item>
-        <property name="text">
-         <string>int*</string>
-        </property>
+        <widget class="QCheckBox" name="checkBox_2">
+         <property name="text">
+          <string>Other Size</string>
+         </property>
+        </widget>
        </item>
        <item>
-        <property name="text">
-         <string>float*</string>
-        </property>
+        <widget class="QCheckBox" name="checkBox_3">
+         <property name="text">
+          <string>unknown</string>
+         </property>
+        </widget>
        </item>
-       <item>
-        <property name="text">
-         <string>double*</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit"/>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="text">
-        <string>Parallel</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox_2">
-       <property name="text">
-        <string>Other Size</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox_3">
-       <property name="text">
-        <string>unknown</string>
-       </property>
-      </widget>
+      </layout>
      </item>
     </layout>
    </item>

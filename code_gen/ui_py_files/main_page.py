@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1768, 1057)
+        MainWindow.resize(1055, 788)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -25,6 +25,85 @@ class Ui_MainWindow(object):
         self.tab_3.setObjectName("tab_3")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.tab_3)
         self.gridLayout_3.setObjectName("gridLayout_3")
+        self.groupBox = QtWidgets.QGroupBox(self.tab_3)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
+        self.groupBox.setSizePolicy(sizePolicy)
+        self.groupBox.setObjectName("groupBox")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label = QtWidgets.QLabel(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
+        self.lineEdit = QtWidgets.QLineEdit(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.lineEdit.setFont(font)
+        self.lineEdit.setObjectName("lineEdit")
+        self.verticalLayout.addWidget(self.lineEdit)
+        self.label_2 = QtWidgets.QLabel(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.lineEdit_2.setFont(font)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.verticalLayout.addWidget(self.lineEdit_2)
+        self.label_11 = QtWidgets.QLabel(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_11.setFont(font)
+        self.label_11.setObjectName("label_11")
+        self.verticalLayout.addWidget(self.label_11)
+        self.label_12 = QtWidgets.QLabel(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_12.setFont(font)
+        self.label_12.setObjectName("label_12")
+        self.verticalLayout.addWidget(self.label_12)
+        self.pushButton_6 = QtWidgets.QPushButton(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.verticalLayout.addWidget(self.pushButton_6)
+        self.label_core_count = QtWidgets.QLabel(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_core_count.setFont(font)
+        self.label_core_count.setObjectName("label_core_count")
+        self.verticalLayout.addWidget(self.label_core_count)
+        self.horizontalSlider_core_count = QtWidgets.QSlider(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.horizontalSlider_core_count.setFont(font)
+        self.horizontalSlider_core_count.setMinimum(4)
+        self.horizontalSlider_core_count.setMaximum(32)
+        self.horizontalSlider_core_count.setProperty("value", 12)
+        self.horizontalSlider_core_count.setOrientation(QtCore.Qt.Horizontal)
+        self.horizontalSlider_core_count.setObjectName("horizontalSlider_core_count")
+        self.verticalLayout.addWidget(self.horizontalSlider_core_count)
+        self.checkBox_show_popup_messages = QtWidgets.QCheckBox(self.groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_show_popup_messages.setFont(font)
+        self.checkBox_show_popup_messages.setObjectName("checkBox_show_popup_messages")
+        self.verticalLayout.addWidget(self.checkBox_show_popup_messages)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
+        self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.groupBox, 0, 2, 1, 1)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label_input_parameters = QtWidgets.QLabel(self.tab_3)
@@ -44,6 +123,12 @@ class Ui_MainWindow(object):
         self.pushButton_add_input_parameters.setFont(font)
         self.pushButton_add_input_parameters.setObjectName("pushButton_add_input_parameters")
         self.verticalLayout_2.addWidget(self.pushButton_add_input_parameters)
+        self.pushButton_add_struct = QtWidgets.QPushButton(self.tab_3)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_add_struct.setFont(font)
+        self.pushButton_add_struct.setObjectName("pushButton_add_struct")
+        self.verticalLayout_2.addWidget(self.pushButton_add_struct)
         self.pushButton_delete_input_parameters = QtWidgets.QPushButton(self.tab_3)
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -83,176 +168,73 @@ class Ui_MainWindow(object):
         self.pushButton_delete_output_param.setObjectName("pushButton_delete_output_param")
         self.verticalLayout_3.addWidget(self.pushButton_delete_output_param)
         self.gridLayout_3.addLayout(self.verticalLayout_3, 0, 1, 1, 1)
-        self.groupBox = QtWidgets.QGroupBox(self.tab_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
-        self.groupBox.setSizePolicy(sizePolicy)
-        self.groupBox.setObjectName("groupBox")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label)
-        self.lineEdit = QtWidgets.QLineEdit(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setObjectName("lineEdit")
-        self.verticalLayout.addWidget(self.lineEdit)
-        self.label_2 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_2.setFont(font)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout.addWidget(self.label_2)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.lineEdit_2.setFont(font)
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.verticalLayout.addWidget(self.lineEdit_2)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem)
-        self.label_4 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_4.setFont(font)
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout.addWidget(self.label_4)
-        self.label_8 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_8.setFont(font)
-        self.label_8.setObjectName("label_8")
-        self.verticalLayout.addWidget(self.label_8)
-        self.pushButton_3 = QtWidgets.QPushButton(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.pushButton_3.setFont(font)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.verticalLayout.addWidget(self.pushButton_3)
-        self.label_3 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_3.setFont(font)
-        self.label_3.setObjectName("label_3")
-        self.verticalLayout.addWidget(self.label_3)
-        self.label_7 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_7.setFont(font)
-        self.label_7.setObjectName("label_7")
-        self.verticalLayout.addWidget(self.label_7)
-        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.pushButton_2.setFont(font)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.verticalLayout.addWidget(self.pushButton_2)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem1)
-        self.label_5 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_5.setFont(font)
-        self.label_5.setObjectName("label_5")
-        self.verticalLayout.addWidget(self.label_5)
-        self.label_9 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_9.setFont(font)
-        self.label_9.setObjectName("label_9")
-        self.verticalLayout.addWidget(self.label_9)
-        self.pushButton_4 = QtWidgets.QPushButton(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.pushButton_4.setFont(font)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.verticalLayout.addWidget(self.pushButton_4)
-        self.label_6 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_6.setFont(font)
-        self.label_6.setObjectName("label_6")
-        self.verticalLayout.addWidget(self.label_6)
-        self.label_10 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_10.setFont(font)
-        self.label_10.setObjectName("label_10")
-        self.verticalLayout.addWidget(self.label_10)
-        self.pushButton_5 = QtWidgets.QPushButton(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.pushButton_5.setFont(font)
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.verticalLayout.addWidget(self.pushButton_5)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem2)
-        self.label_11 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_11.setFont(font)
-        self.label_11.setObjectName("label_11")
-        self.verticalLayout.addWidget(self.label_11)
-        self.label_12 = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_12.setFont(font)
-        self.label_12.setObjectName("label_12")
-        self.verticalLayout.addWidget(self.label_12)
-        self.label_core_count = QtWidgets.QLabel(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_core_count.setFont(font)
-        self.label_core_count.setObjectName("label_core_count")
-        self.verticalLayout.addWidget(self.label_core_count)
-        self.horizontalSlider_core_count = QtWidgets.QSlider(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.horizontalSlider_core_count.setFont(font)
-        self.horizontalSlider_core_count.setMinimum(4)
-        self.horizontalSlider_core_count.setMaximum(32)
-        self.horizontalSlider_core_count.setProperty("value", 12)
-        self.horizontalSlider_core_count.setOrientation(QtCore.Qt.Horizontal)
-        self.horizontalSlider_core_count.setObjectName("horizontalSlider_core_count")
-        self.verticalLayout.addWidget(self.horizontalSlider_core_count)
-        self.pushButton_6 = QtWidgets.QPushButton(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.pushButton_6.setFont(font)
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.verticalLayout.addWidget(self.pushButton_6)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem3)
-        self.pushButton_generate_code = QtWidgets.QPushButton(self.groupBox)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.pushButton_generate_code.setFont(font)
-        self.pushButton_generate_code.setObjectName("pushButton_generate_code")
-        self.verticalLayout.addWidget(self.pushButton_generate_code)
-        self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 1, 1)
-        self.gridLayout_3.addWidget(self.groupBox, 0, 2, 1, 1)
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.tab_4)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        self.pushButton_12 = QtWidgets.QPushButton(self.tab_4)
-        self.pushButton_12.setObjectName("pushButton_12")
-        self.gridLayout_5.addWidget(self.pushButton_12, 0, 0, 1, 1)
+        self.groupBox_2 = QtWidgets.QGroupBox(self.tab_4)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
+        self.groupBox_2.setSizePolicy(sizePolicy)
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_2)
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.pushButton_get_diagram = QtWidgets.QPushButton(self.groupBox_2)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_get_diagram.setFont(font)
+        self.pushButton_get_diagram.setObjectName("pushButton_get_diagram")
+        self.gridLayout_6.addWidget(self.pushButton_get_diagram, 1, 0, 1, 1)
+        self.groupBox_class_diagram = QtWidgets.QGroupBox(self.groupBox_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.groupBox_class_diagram.sizePolicy().hasHeightForWidth())
+        self.groupBox_class_diagram.setSizePolicy(sizePolicy)
+        self.groupBox_class_diagram.setTitle("")
+        self.groupBox_class_diagram.setObjectName("groupBox_class_diagram")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.groupBox_class_diagram)
+        self.gridLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_7.setSpacing(0)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.verticalLayout_class_diagram = QtWidgets.QVBoxLayout()
+        self.verticalLayout_class_diagram.setObjectName("verticalLayout_class_diagram")
+        self.gridLayout_7.addLayout(self.verticalLayout_class_diagram, 0, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.groupBox_class_diagram, 0, 0, 1, 1)
+        self.pushButton_get_readme = QtWidgets.QPushButton(self.groupBox_2)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_get_readme.setFont(font)
+        self.pushButton_get_readme.setObjectName("pushButton_get_readme")
+        self.gridLayout_6.addWidget(self.pushButton_get_readme, 2, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.groupBox_2, 0, 0, 1, 1)
+        self.groupBox_3 = QtWidgets.QGroupBox(self.tab_4)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.groupBox_3.sizePolicy().hasHeightForWidth())
+        self.groupBox_3.setSizePolicy(sizePolicy)
+        self.groupBox_3.setObjectName("groupBox_3")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox_3)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.groupBox_3)
+        self.plainTextEdit.setObjectName("plainTextEdit")
+        self.gridLayout_4.addWidget(self.plainTextEdit, 0, 0, 1, 1)
+        self.pushButton_generate_code = QtWidgets.QPushButton(self.groupBox_3)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_generate_code.setFont(font)
+        self.pushButton_generate_code.setObjectName("pushButton_generate_code")
+        self.gridLayout_4.addWidget(self.pushButton_generate_code, 1, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.groupBox_3, 0, 1, 1, 1)
         self.tabWidget.addTab(self.tab_4, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1768, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1055, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -266,35 +248,160 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_input_parameters.setText(_translate("MainWindow", "Input Parameters: 0"))
-        self.pushButton_add_input_parameters.setText(_translate("MainWindow", "Add Input Parameter"))
-        self.pushButton_delete_input_parameters.setText(_translate("MainWindow", "Delete Selected Input Param"))
-        self.pushButton_import.setText(_translate("MainWindow", "Import"))
-        self.label_output_parameters.setText(_translate("MainWindow", "Output Parameters: 0"))
-        self.pushButton_add_output_parameter.setText(_translate("MainWindow", "Add Output Parameter"))
-        self.pushButton_delete_output_param.setText(_translate("MainWindow", "Delete Selected Output Param"))
         self.groupBox.setTitle(_translate("MainWindow", "Algorithm "))
         self.label.setText(_translate("MainWindow", "Algorithm Name"))
         self.label_2.setText(_translate("MainWindow", "Short Algorithm Name"))
-        self.label_4.setText(_translate("MainWindow", "Test .h Folder:"))
-        self.label_8.setText(_translate("MainWindow", "./"))
-        self.pushButton_3.setText(_translate("MainWindow", "Test .h Folder Select"))
-        self.label_3.setText(_translate("MainWindow", "Test .cpp Folder:"))
-        self.label_7.setText(_translate("MainWindow", "./"))
-        self.pushButton_2.setText(_translate("MainWindow", "Test .cpp Folder Select"))
-        self.label_5.setText(_translate("MainWindow", "Algorithm .h Folder:"))
-        self.label_9.setText(_translate("MainWindow", "./"))
-        self.pushButton_4.setText(_translate("MainWindow", "Algorithm .h Folder Select"))
-        self.label_6.setText(_translate("MainWindow", "Algorithm .cpp Folder:"))
-        self.label_10.setText(_translate("MainWindow", "./"))
-        self.pushButton_5.setText(_translate("MainWindow", "Algorithm .cpp Folder Select"))
         self.label_11.setText(_translate("MainWindow", "Generic Folder:"))
         self.label_12.setText(_translate("MainWindow", "./"))
-        self.label_core_count.setText(_translate("MainWindow", "Core Count: 12"))
         self.pushButton_6.setText(_translate("MainWindow", "Generic Folder Select"))
-        self.pushButton_generate_code.setText(_translate("MainWindow", "Generate Code"))
+        self.label_core_count.setText(_translate("MainWindow", "Core Count: 12"))
+        self.checkBox_show_popup_messages.setText(_translate("MainWindow", "Show Information Bubles"))
+        self.label_input_parameters.setText(_translate("MainWindow", "Input Parameters: 0"))
+        self.pushButton_add_input_parameters.setText(_translate("MainWindow", "Add Input Parameter"))
+        self.pushButton_add_struct.setText(_translate("MainWindow", "Add Struct"))
+        self.pushButton_delete_input_parameters.setText(_translate("MainWindow", "Delete Selected "))
+        self.pushButton_import.setText(_translate("MainWindow", "Import"))
+        self.label_output_parameters.setText(_translate("MainWindow", "Output Parameters: 0"))
+        self.pushButton_add_output_parameter.setText(_translate("MainWindow", "Add Output Parameter"))
+        self.pushButton_delete_output_param.setText(_translate("MainWindow", "Delete Selected "))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Parameters and Name"))
-        self.pushButton_12.setText(_translate("MainWindow", "PushButton"))
+        self.groupBox_2.setTitle(_translate("MainWindow", "Class Diagram"))
+        self.pushButton_get_diagram.setText(_translate("MainWindow", "Get Class Diagram"))
+        self.pushButton_get_readme.setText(_translate("MainWindow", "Get Readme Text"))
+        self.groupBox_3.setTitle(_translate("MainWindow", "Readme.md"))
+        self.plainTextEdit.setPlainText(_translate("MainWindow", ";lkdsjfl\n"
+"ADSF\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"adsf\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"adsfads\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"asdfa\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"asdf\n"
+"asdf\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"asdf\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"adsf"))
+        self.pushButton_generate_code.setText(_translate("MainWindow", "Generate Code"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Preview and Readme"))
 
 
