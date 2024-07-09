@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(583, 347)
+        Form.resize(583, 349)
         self.gridLayout = QtWidgets.QGridLayout(Form)
         self.gridLayout.setObjectName("gridLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
@@ -48,6 +48,8 @@ class Ui_Form(object):
         sizePolicy.setHeightForWidth(self.listWidget_struct_parameters.sizePolicy().hasHeightForWidth())
         self.listWidget_struct_parameters.setSizePolicy(sizePolicy)
         self.listWidget_struct_parameters.setMinimumSize(QtCore.QSize(0, 225))
+        self.listWidget_struct_parameters.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollPerPixel)
+        self.listWidget_struct_parameters.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerPixel)
         self.listWidget_struct_parameters.setObjectName("listWidget_struct_parameters")
         self.verticalLayout_2.addWidget(self.listWidget_struct_parameters)
         self.pushButton_add_struct_param = QtWidgets.QPushButton(Form)

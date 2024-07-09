@@ -115,6 +115,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.label_input_parameters)
         self.listWidget_input_parameters = QtWidgets.QListWidget(self.tab_3)
         self.listWidget_input_parameters.setAlternatingRowColors(True)
+        self.listWidget_input_parameters.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollPerPixel)
+        self.listWidget_input_parameters.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerPixel)
         self.listWidget_input_parameters.setObjectName("listWidget_input_parameters")
         self.verticalLayout_2.addWidget(self.listWidget_input_parameters)
         self.pushButton_add_input_parameters = QtWidgets.QPushButton(self.tab_3)

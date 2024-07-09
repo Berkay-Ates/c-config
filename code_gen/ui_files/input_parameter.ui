@@ -27,6 +27,11 @@
          </item>
          <item>
           <property name="text">
+           <string>struct</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>float</string>
           </property>
          </item>
@@ -48,6 +53,11 @@
          <item>
           <property name="text">
            <string>double*</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>struct*</string>
           </property>
          </item>
         </widget>

@@ -1,2 +1,3 @@
 from .input_parameter_model import InputParameterModel
 from .output_parameter_model import OutputParameterModel
+from .input_structure_model import InputStructureModel

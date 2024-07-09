@@ -1,11 +1,13 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QPoint
+from PyQt5.QtCore import QPoint, QObject, pyqtSignal
 from ui_py_files import InputParameterWidget
 from models import InputParameterModel
 from ui_py_files import InfoPopup
 
 
 class InputParameterController(QWidget, InputParameterWidget):
+
+    struct_signal = pyqtSignal(QObject)
 
     def __init__(self):
         super().__init__()
@@ -25,6 +27,8 @@ class InputParameterController(QWidget, InputParameterWidget):
 
     def on_combobox_changed(self):
         current_text = self.comboBox.currentText()
+        if current_text == "struct" or current_text == "struct*":
+            self.struct_signal.emit(self)
 
     def eventFilter(self, source, event):
         if event.type() == event.Enter and self.show_popup_info:

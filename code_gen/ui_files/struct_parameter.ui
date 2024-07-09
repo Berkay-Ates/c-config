@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>583</width>
-    <height>347</height>
+    <height>349</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -69,6 +69,12 @@
              <width>0</width>
              <height>225</height>
             </size>
+           </property>
+           <property name="verticalScrollMode">
+            <enum>QAbstractItemView::ScrollPerPixel</enum>
+           </property>
+           <property name="horizontalScrollMode">
+            <enum>QAbstractItemView::ScrollPerPixel</enum>
            </property>
           </widget>
          </item>

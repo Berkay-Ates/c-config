@@ -7,6 +7,7 @@ from .input_param_controller import InputParameterController
 from .struct_parameter_widget import StructParameterController
 from utils import check_java_installed, check_doxygen_installed, PopUpWindows, text
 from typing import List
+import json
 
 
 class MainWindowController(QMainWindow, MainWindow):
@@ -28,12 +29,24 @@ class MainWindowController(QMainWindow, MainWindow):
         self.pushButton_get_readme.clicked.connect(self.get_readme_text)
         self.pushButton_add_struct.clicked.connect(self.add_struct)
 
+        self.pushButton_import.clicked.connect(self.import_button_clicked)
+
         # parameters
         self.input_parameters: List[InputParameterController] = []
         self.output_parameters: List[OutputParameterController] = []
         self.input_struct_parameters = []
 
         print("*****************", len(self.output_parameters))
+
+    def import_button_clicked(self):
+        json_list = []
+        for item in self.input_parameters:
+            json_list.append(item.values.__dict__)
+
+        print(json_list)
+
+        with open("objects.json", "w") as json_file:
+            json.dump(json_list, json_file, indent=4)
 
     def get_readme_text(self):
         self.plainTextEdit.setPlainText(text)
@@ -168,10 +181,29 @@ class MainWindowController(QMainWindow, MainWindow):
         for i in self.input_parameters:
             print((i.values))
 
+    def struct_adding(self, input_param_controller: InputParameterController):
+        print("Struct Adding.....")
+        # delete changed struct from the list
+        for index in range(self.listWidget_input_parameters.count()):
+            item = self.listWidget_input_parameters.item(index)
+            if item is not None:
+                widget = self.listWidget_input_parameters.itemWidget(item)
+                if widget == input_param_controller:
+                    self.listWidget_input_parameters.takeItem(index)
+                    self.input_parameters.remove(input_param_controller)
+                    widget.deleteLater()
+                    break
+
+        self.add_struct()
+
+        print(f"input_params:{ len(self.input_parameters)}")
+        print(f"input_structs:{ len(self.input_struct_parameters)}")
+
     def add_input_item(self):
         # Create an instance of your custom widget
         custom_widget = InputParameterController()
         self.input_parameters.append(custom_widget)
+        custom_widget.struct_signal.connect(self.struct_adding)
         self.label_input_parameters.setText(f"Input Parameters: {len(self.input_parameters)}")
 
         # Create a QListWidgetItem
