@@ -1,0 +1,171 @@
+{
+    "type": "str",
+    "name": "MainStruct",
+    "input_parameter_models": [
+        {
+            "type_": "int*",
+            "name_": "Birinci",
+            "is_parallel_": true,
+            "is_other_size_": false,
+            "is_init_": false
+        },
+        {
+            "type_": "double",
+            "name_": "Ikinci",
+            "is_parallel_": false,
+            "is_other_size_": true,
+            "is_init_": false
+        },
+        {
+            "type_": "float",
+            "name_": "Ucuncu",
+            "is_parallel_": true,
+            "is_other_size_": true,
+            "is_init_": true
+        }
+    ],
+    "input_struct_parameter_models": [
+        {
+            "type": "str",
+            "name": "SubStruct",
+            "input_parameter_models": [
+                {
+                    "type_": "int",
+                    "name_": "SubBirinci",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                },
+                {
+                    "type_": "int",
+                    "name_": "SubIkinci",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": [
+                {
+                    "type": "str",
+                    "name": "SUBSUBStruct",
+                    "input_parameter_models": [
+                        {
+                            "type_": "int",
+                            "name_": "SubSubBirinci",
+                            "is_parallel_": false,
+                            "is_other_size_": false,
+                            "is_init_": false
+                        }
+                    ],
+                    "input_struct_parameter_models": [
+                        {
+                            "type": "str",
+                            "name": "3Struct",
+                            "input_parameter_models": [],
+                            "input_struct_parameter_models": [
+                                {
+                                    "type": "str",
+                                    "name": "4Struct",
+                                    "input_parameter_models": [],
+                                    "input_struct_parameter_models": [
+                                        {
+                                            "type": "str",
+                                            "name": "5Struct",
+                                            "input_parameter_models": [],
+                                            "input_struct_parameter_models": [
+                                                {
+                                                    "type": "str",
+                                                    "name": "6Struct",
+                                                    "input_parameter_models": [],
+                                                    "input_struct_parameter_models": [
+                                                        {
+                                                            "type": "struct",
+                                                            "name": "7Struct",
+                                                            "input_parameter_models": [
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                },
+                                                                {
+                                                                    "type_": "int",
+                                                                    "name_": "",
+                                                                    "is_parallel_": false,
+                                                                    "is_other_size_": false,
+                                                                    "is_init_": false
+                                                                }
+                                                            ],
+                                                            "input_struct_parameter_models": []
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

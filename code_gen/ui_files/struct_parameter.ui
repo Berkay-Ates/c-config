@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>583</width>
-    <height>349</height>
+    <height>417</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -89,6 +89,20 @@
           <widget class="QPushButton" name="pushButton_remove_struct_item">
            <property name="text">
             <string>Remove Item</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_to_json">
+           <property name="text">
+            <string>To Json</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_from_json">
+           <property name="text">
+            <string>From Json</string>
            </property>
           </widget>
          </item>

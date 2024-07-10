@@ -1,0 +1,42 @@
+{
+    "name": "Algorithm",
+    "input_parameter_models": [
+        {
+            "type_": "int",
+            "name_": "Birinci",
+            "is_parallel_": false,
+            "is_other_size_": false,
+            "is_init_": false
+        },
+        {
+            "type_": "int",
+            "name_": "Ikinci",
+            "is_parallel_": false,
+            "is_other_size_": false,
+            "is_init_": false
+        }
+    ],
+    "input_struct_parameter_model": [
+        {
+            "type": "str",
+            "name": "Struct",
+            "input_parameter_models": [
+                {
+                    "type_": "int",
+                    "name_": "SBir",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                },
+                {
+                    "type_": "int",
+                    "name_": "SIki",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": []
+        }
+    ]
+}

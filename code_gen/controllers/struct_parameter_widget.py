@@ -3,6 +3,8 @@ from ui_py_files import StructParameterWidget
 from .input_param_controller import InputParameterController
 from typing import List
 from models import InputStructureModel
+from PyQt5.QtCore import Qt
+import json
 
 
 class StructParameterController(QWidget, StructParameterWidget):
@@ -19,6 +21,20 @@ class StructParameterController(QWidget, StructParameterWidget):
 
         self.lineEdit_struct_name.textChanged.connect(self.struct_name_changed)
         self.comboBox_struct_type.currentIndexChanged.connect(self.struct_type_changed)
+
+        self.pushButton_from_json.clicked.connect(self.from_json)
+        self.pushButton_to_json.clicked.connect(self.to_json)
+
+    def from_json(self):
+        print("from json clicked")
+
+    def to_json(self):
+        # Convert the instance to a dictionary
+        input_structure_dict = self.values.to_dict()
+
+        # Save the dictionary to a JSON file
+        with open("input_structure.json", "w") as file:
+            json.dump(input_structure_dict, file, indent=4)
 
     def struct_type_changed(self):
         self.values.type = self.comboBox_struct_type.currentText()
@@ -74,8 +90,8 @@ class StructParameterController(QWidget, StructParameterWidget):
 
         # Set the custom widget as the item widget in the list widget
         self.listWidget_struct_parameters.setItemWidget(item, custom_widget)
-        for item in self.values.get_input_parameter_models():
-            print(item.values)
+
+        print(self.values)
 
     def remove_item(self):
         list_widget = self.listWidget_struct_parameters  # Assuming you are deleting from output list

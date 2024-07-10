@@ -1,5 +1,8 @@
 from ui_py_files import InputParameterWidget
+from .input_parameter_model import InputParameterModel
+
 from ui_py_files import StructParameterWidget
+from typing import List, Dict
 
 
 class InputStructureModel:
@@ -7,8 +10,8 @@ class InputStructureModel:
     def __init__(self, type: str = "str", name: str = ""):
         self._type = type
         self._name = name
-        self._input_parameter_models = []
-        self._input_struct_parameter_models = []
+        self._input_parameter_models: List[InputParameterWidget] = []
+        self._input_struct_parameter_models: List[StructParameterWidget] = []
 
     @property
     def type(self):
@@ -16,8 +19,8 @@ class InputStructureModel:
 
     @type.setter
     def type(self, type: str):
-        if not type in ["str", "str*"]:
-            raise ValueError("type must be [str, str*]")
+        if not type in ["struct", "struct*"]:
+            raise ValueError("type must be [struct, struct*]")
         self._type = type
 
     @property
@@ -55,4 +58,23 @@ class InputStructureModel:
         return self._input_parameter_models
 
     def __str__(self):
-        return f"OutputParameterModel(type={self._type}, name='{self._name}')"
+        return f"OutputParameterModel(type={self._type}, name='{self._name}',input_parameter_len:{len(self._input_parameter_models)},input_struct_len={len(self._input_struct_parameter_models)} )"
+
+    def to_dict(self) -> Dict[str, any]:
+        return {
+            "type": self._type,
+            "name": self._name,
+            "input_parameter_models": [model.values.to_dict() for model in self._input_parameter_models],
+            "input_struct_parameter_models": [model.values.to_dict() for model in self._input_struct_parameter_models],
+        }
+
+    @classmethod
+    def from_dict(cls, dict_obj: Dict[str, any]):
+        obj = cls(type=dict_obj.get("type", "str"), name=dict_obj.get("name", ""))
+        obj._input_parameter_models = [
+            InputParameterModel.from_dict(m) for m in dict_obj.get("input_parameter_models", [])
+        ]
+        obj._input_struct_parameter_models = [
+            cls.from_dict(m) for m in dict_obj.get("input_struct_parameter_models", [])
+        ]
+        return obj

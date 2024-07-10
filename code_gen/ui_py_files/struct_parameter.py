@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(583, 349)
+        Form.resize(583, 417)
         self.gridLayout = QtWidgets.QGridLayout(Form)
         self.gridLayout.setObjectName("gridLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
@@ -58,6 +58,12 @@ class Ui_Form(object):
         self.pushButton_remove_struct_item = QtWidgets.QPushButton(Form)
         self.pushButton_remove_struct_item.setObjectName("pushButton_remove_struct_item")
         self.verticalLayout_2.addWidget(self.pushButton_remove_struct_item)
+        self.pushButton_to_json = QtWidgets.QPushButton(Form)
+        self.pushButton_to_json.setObjectName("pushButton_to_json")
+        self.verticalLayout_2.addWidget(self.pushButton_to_json)
+        self.pushButton_from_json = QtWidgets.QPushButton(Form)
+        self.pushButton_from_json.setObjectName("pushButton_from_json")
+        self.verticalLayout_2.addWidget(self.pushButton_from_json)
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.gridLayout.addLayout(self.verticalLayout, 1, 0, 1, 1)
@@ -73,6 +79,8 @@ class Ui_Form(object):
         self.label_parameter_count.setText(_translate("Form", "Parameter Count: 0"))
         self.pushButton_add_struct_param.setText(_translate("Form", "Add Item"))
         self.pushButton_remove_struct_item.setText(_translate("Form", "Remove Item"))
+        self.pushButton_to_json.setText(_translate("Form", "To Json"))
+        self.pushButton_from_json.setText(_translate("Form", "From Json"))
 
 
 if __name__ == "__main__":

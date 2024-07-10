@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QPoint, QObject, pyqtSignal
 from ui_py_files import InputParameterWidget
 from models import InputParameterModel
+from PyQt5.QtCore import Qt
 from ui_py_files import InfoPopup
 
 
@@ -15,36 +16,67 @@ class InputParameterController(QWidget, InputParameterWidget):
         self.popup = None
         self.init_window()
 
+        self.lineEdit_name.textChanged.connect(self.name_changed)
+        self.comboBox_param_type.currentIndexChanged.connect(self.param_type_changed)
+        self.checkBox_other_size.stateChanged.connect(self.other_size_changed)
+        self.checkBox_init.stateChanged.connect(self.init_changed)
+        self.checkBox_parallel.stateChanged.connect(self.parallel_changed)
+
+    def name_changed(self, text):
+        self.values.set_name(text)
+
+    def param_type_changed(self, index):
+        selected_item = self.comboBox_param_type.currentText()
+        self.values.set_type(selected_item)
+
+    def parallel_changed(self, state):
+        if state == Qt.CheckState.Checked:
+            self.values.set_is_parallel(True)
+            return
+        self.values.set_is_parallel(False)
+
+    def init_changed(self, state):
+        if state == Qt.CheckState.Checked:
+            self.values.set_init(True)
+            return
+        self.values.set_init(True)
+
+    def other_size_changed(self, state):
+        if state == Qt.CheckState.Checked:
+            self.values.set_is_other_size(True)
+            return
+        self.values.set_is_other_size(False)
+
     def init_window(self):
         self.setupUi(self)
 
         self.show_popup_info = False
-        self.checkBox.installEventFilter(self)
-        self.checkBox_2.installEventFilter(self)
-        self.checkBox_3.installEventFilter(self)
+        self.checkBox_init.installEventFilter(self)
+        self.checkBox_other_size.installEventFilter(self)
+        self.checkBox_parallel.installEventFilter(self)
 
-        self.comboBox.currentIndexChanged.connect(self.on_combobox_changed)
+        self.comboBox_param_type.currentIndexChanged.connect(self.on_combobox_changed)
 
     def on_combobox_changed(self):
-        current_text = self.comboBox.currentText()
+        current_text = self.comboBox_param_type.currentText()
         if current_text == "struct" or current_text == "struct*":
             self.struct_signal.emit(self)
 
     def eventFilter(self, source, event):
         if event.type() == event.Enter and self.show_popup_info:
-            if source == self.checkBox:
+            if source == self.checkBox_init:
                 self.showPopup(
                     source,
                     "Checkbox 1",
                     "This is a description for checkbox 1 This is a description for checkbox  This is a description for checkbox  This is a description for checkbox  This is a description for checkbox ",
                 )
-            elif source == self.checkBox_2:
+            elif source == self.checkBox_parallel:
                 self.showPopup(
                     source,
                     "Checkbox 2",
                     "This is a description for checkbox 1 This is a description for checkbox  This is a description for checkbox  This is a description for checkbox  This is a description for checkbox ",
                 )
-            elif source == self.checkBox_3:
+            elif source == self.checkBox_other_size:
                 self.showPopup(
                     source,
                     "Checkbox 3",

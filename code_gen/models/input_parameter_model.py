@@ -63,7 +63,7 @@ class InputParameterModel:
     @classmethod
     def from_dict(cls, dict_obj):
         return cls(
-            type_=dict_obj.get("type_", "int"),
+            type=dict_obj.get("type_", "int"),
             name=dict_obj.get("name_", ""),
             is_parallel=dict_obj.get("is_parallel_", False),
             is_other_size=dict_obj.get("is_other_size_", False),

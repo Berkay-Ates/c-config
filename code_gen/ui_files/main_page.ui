@@ -52,7 +52,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit">
+              <widget class="QLineEdit" name="lineEdit_algorithm_name">
                <property name="font">
                 <font>
                  <pointsize>12</pointsize>

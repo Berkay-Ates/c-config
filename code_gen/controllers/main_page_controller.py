@@ -5,6 +5,7 @@ from PyQt5.QtGui import QPixmap
 from .output_param_controller import OutputParameterController
 from .input_param_controller import InputParameterController
 from .struct_parameter_widget import StructParameterController
+from models import InputStructureModel, InputParameterModel
 from utils import check_java_installed, check_doxygen_installed, PopUpWindows, text
 from typing import List
 import json
@@ -34,19 +35,42 @@ class MainWindowController(QMainWindow, MainWindow):
         # parameters
         self.input_parameters: List[InputParameterController] = []
         self.output_parameters: List[OutputParameterController] = []
-        self.input_struct_parameters = []
+        self.input_struct_parameters: List[StructParameterController] = []
 
         print("*****************", len(self.output_parameters))
 
     def import_button_clicked(self):
         json_list = []
+        json_list_2 = []
         for item in self.input_parameters:
-            json_list.append(item.values.__dict__)
+            json_list.append(item.values.to_dict())
 
-        print(json_list)
+        for struct in self.input_struct_parameters:
+            json_list_2.append(struct.values.to_dict())
 
-        with open("objects.json", "w") as json_file:
-            json.dump(json_list, json_file, indent=4)
+        final_json = {
+            "name": "Algorithm",
+            "input_parameter_models": json_list,
+            "input_struct_parameter_model": json_list_2,
+        }
+
+        with open("objects_MAIN.json", "w") as json_file:
+            json.dump(final_json, json_file, indent=4)
+
+        with open("objects_MAIN.json", "r") as json_file:
+            input_structure_dict = json.load(json_file)
+
+        print(input_structure_dict)
+        list_parameters = []
+        list_widgets = []
+
+        for item in input_structure_dict["input_parameter_models"]:
+            list_parameters.append(InputParameterModel.from_dict(item))
+
+        for item in input_structure_dict["input_struct_parameter_model"]:
+            list_widgets.append(InputStructureModel.from_dict(item))
+
+        print("hello")
 
     def get_readme_text(self):
         self.plainTextEdit.setPlainText(text)
