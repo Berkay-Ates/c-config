@@ -3,34 +3,154 @@
     "input_parameter_models": [
         {
             "type_": "int",
-            "name_": "Birinci",
-            "is_parallel_": false,
-            "is_other_size_": false,
-            "is_init_": false
+            "name_": "BIR",
+            "is_parallel_": true,
+            "is_other_size_": true,
+            "is_init_": true
         },
         {
             "type_": "int",
-            "name_": "Ikinci",
-            "is_parallel_": false,
-            "is_other_size_": false,
-            "is_init_": false
+            "name_": "IKI",
+            "is_parallel_": true,
+            "is_other_size_": true,
+            "is_init_": true
+        },
+        {
+            "type_": "int",
+            "name_": "UC",
+            "is_parallel_": true,
+            "is_other_size_": true,
+            "is_init_": true
+        }, 
+        {
+            "type_": "int",
+            "name_": "DORT",
+            "is_parallel_": true,
+            "is_other_size_": true,
+            "is_init_": true
         }
     ],
     "input_struct_parameter_model": [
         {
             "type": "str",
-            "name": "Struct",
+            "name": "struct1",
             "input_parameter_models": [
                 {
                     "type_": "int",
-                    "name_": "SBir",
+                    "name_": "s1Bir",
                     "is_parallel_": false,
                     "is_other_size_": false,
                     "is_init_": false
                 },
                 {
                     "type_": "int",
-                    "name_": "SIki",
+                    "name_": "s1Iki",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": [
+                {
+                    "type": "str",
+                    "name": "struct1",
+                    "input_parameter_models": [
+                        {
+                            "type_": "int",
+                            "name_": "s1Bir",
+                            "is_parallel_": false,
+                            "is_other_size_": false,
+                            "is_init_": false
+                        },
+                        {
+                            "type_": "int",
+                            "name_": "s1Iki",
+                            "is_parallel_": false,
+                            "is_other_size_": false,
+                            "is_init_": false
+                        }
+                    ],
+                    "input_struct_parameter_models": []
+                },
+                {
+                    "type": "str",
+                    "name": "struct2",
+                    "input_parameter_models": [
+                        {
+                            "type_": "int",
+                            "name_": "S2Bir",
+                            "is_parallel_": false,
+                            "is_other_size_": false,
+                            "is_init_": false
+                        },
+                        {
+                            "type_": "int",
+                            "name_": "s2Iki",
+                            "is_parallel_": false,
+                            "is_other_size_": false,
+                            "is_init_": false
+                        }
+                    ],
+                    "input_struct_parameter_models": []
+                },
+                {
+                    "type": "str",
+                    "name": "struct3",
+                    "input_parameter_models": [
+                        {
+                            "type_": "int",
+                            "name_": "s3Bir",
+                            "is_parallel_": false,
+                            "is_other_size_": false,
+                            "is_init_": false
+                        },
+                        {
+                            "type_": "int",
+                            "name_": "s3Iki",
+                            "is_parallel_": false,
+                            "is_other_size_": false,
+                            "is_init_": false
+                        }
+                    ],
+                    "input_struct_parameter_models": []
+                }
+            ]
+        },
+        {
+            "type": "str",
+            "name": "struct2",
+            "input_parameter_models": [
+                {
+                    "type_": "int",
+                    "name_": "S2Bir",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                },
+                {
+                    "type_": "int",
+                    "name_": "s2Iki",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": []
+        },
+        {
+            "type": "str",
+            "name": "struct3",
+            "input_parameter_models": [
+                {
+                    "type_": "int",
+                    "name_": "s3Bir",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                },
+                {
+                    "type_": "int",
+                    "name_": "s3Iki",
                     "is_parallel_": false,
                     "is_other_size_": false,
                     "is_init_": false

@@ -2,20 +2,31 @@ from PyQt5.QtWidgets import *
 from ui_py_files import StructParameterWidget
 from .input_param_controller import InputParameterController
 from typing import List
-from models import InputStructureModel
+from models import InputStructureModel, InputParameterModel
 from PyQt5.QtCore import Qt
 import json
 
 
 class StructParameterController(QWidget, StructParameterWidget):
 
-    def __init__(self):
+    def __init__(self, values: InputStructureModel = None):
         super().__init__()
         self.values = InputStructureModel()
-        self.init_window()
+        self.init_window(values)
 
-    def init_window(self):
+    def init_window(self, values: InputStructureModel = None):
         self.setupUi(self)
+
+        if values is not None and isinstance(values, InputStructureModel):
+            [self.add_item(item) for item in values.get_input_parameter_models()]
+            [self.add_struct_func(item) for item in values.get_input_struct_parameter_models()]
+
+            self.lineEdit_struct_name.setText(values.name)
+            self.values.name = values.name
+            self.values.type = values.type
+            # self.values = values
+            # [self.add_struct(item) for item in self.values.get_input_struct_parameter_models()]
+
         self.pushButton_add_struct_param.clicked.connect(self.add_item)
         self.pushButton_remove_struct_item.clicked.connect(self.remove_item)
 
@@ -56,9 +67,9 @@ class StructParameterController(QWidget, StructParameterWidget):
                     break
         self.add_struct_func()
 
-    def add_struct_func(self):
+    def add_struct_func(self, values: InputStructureModel = None):
 
-        new_widget = StructParameterController()
+        new_widget = StructParameterController(values)
         new_item = QListWidgetItem(self.listWidget_struct_parameters)
         new_item.setSizeHint(new_widget.sizeHint())
 
@@ -72,9 +83,9 @@ class StructParameterController(QWidget, StructParameterWidget):
         for i in self.values.get_input_struct_parameter_models():
             print((i.values))
 
-    def add_item(self):
+    def add_item(self, values: InputParameterModel = None):
         # Create an instance of your custom widget
-        custom_widget = InputParameterController()
+        custom_widget = InputParameterController(values)
         self.values.add_input_parameter_model(custom_widget)
         custom_widget.struct_signal.connect(self.add_struct)
         self.label_parameter_count.setText(f"Parameter Count: {len(self.values.get_input_parameter_models())}")

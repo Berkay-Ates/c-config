@@ -30,7 +30,8 @@ class MainWindowController(QMainWindow, MainWindow):
         self.pushButton_get_readme.clicked.connect(self.get_readme_text)
         self.pushButton_add_struct.clicked.connect(self.add_struct)
 
-        self.pushButton_import.clicked.connect(self.import_button_clicked)
+        self.pushButton_to_json.clicked.connect(self.to_json_clicked)
+        self.pushButton_from_json.clicked.connect(self.from_json)
 
         # parameters
         self.input_parameters: List[InputParameterController] = []
@@ -39,7 +40,7 @@ class MainWindowController(QMainWindow, MainWindow):
 
         print("*****************", len(self.output_parameters))
 
-    def import_button_clicked(self):
+    def to_json_clicked(self):
         json_list = []
         json_list_2 = []
         for item in self.input_parameters:
@@ -54,23 +55,24 @@ class MainWindowController(QMainWindow, MainWindow):
             "input_struct_parameter_model": json_list_2,
         }
 
-        with open("objects_MAIN.json", "w") as json_file:
+        with open("objects_MAIN1.json", "w") as json_file:
             json.dump(final_json, json_file, indent=4)
+
+    def from_json(self):
 
         with open("objects_MAIN.json", "r") as json_file:
             input_structure_dict = json.load(json_file)
 
         print(input_structure_dict)
-        list_parameters = []
-        list_widgets = []
+        list_parameters = [
+            InputParameterModel.from_dict(item) for item in input_structure_dict["input_parameter_models"]
+        ]
+        list_structs = [
+            InputStructureModel.from_dict(item) for item in input_structure_dict["input_struct_parameter_model"]
+        ]
 
-        for item in input_structure_dict["input_parameter_models"]:
-            list_parameters.append(InputParameterModel.from_dict(item))
-
-        for item in input_structure_dict["input_struct_parameter_model"]:
-            list_widgets.append(InputStructureModel.from_dict(item))
-
-        print("hello")
+        [self.add_input_item(item) for item in list_parameters]
+        [self.add_struct(item) for item in list_structs]
 
     def get_readme_text(self):
         self.plainTextEdit.setPlainText(text)
@@ -189,9 +191,9 @@ class MainWindowController(QMainWindow, MainWindow):
         # Set the custom widget as the item widget in the list widget
         self.listWidget_output_parameters.setItemWidget(item, custom_widget)
 
-    def add_struct(self):
+    def add_struct(self, values: InputStructureModel = None):
 
-        new_widget = StructParameterController()
+        new_widget = StructParameterController(values)
         new_item = QListWidgetItem(self.listWidget_input_parameters)
         new_item.setSizeHint(new_widget.sizeHint())
 
@@ -223,9 +225,9 @@ class MainWindowController(QMainWindow, MainWindow):
         print(f"input_params:{ len(self.input_parameters)}")
         print(f"input_structs:{ len(self.input_struct_parameters)}")
 
-    def add_input_item(self):
+    def add_input_item(self, values: InputParameterModel = None):
         # Create an instance of your custom widget
-        custom_widget = InputParameterController()
+        custom_widget = InputParameterController(values)
         self.input_parameters.append(custom_widget)
         custom_widget.struct_signal.connect(self.struct_adding)
         self.label_input_parameters.setText(f"Input Parameters: {len(self.input_parameters)}")

@@ -19,8 +19,9 @@ class InputStructureModel:
 
     @type.setter
     def type(self, type: str):
-        if not type in ["struct", "struct*"]:
-            raise ValueError("type must be [struct, struct*]")
+        if not type in ["str", "str*"]:
+            print(type)
+            raise ValueError("type must be [str, str*]")
         self._type = type
 
     @property

@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.tab_3)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.groupBox = QtWidgets.QGroupBox(self.tab_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
@@ -42,12 +42,12 @@ class Ui_MainWindow(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
-        self.lineEdit = QtWidgets.QLineEdit(self.groupBox)
+        self.lineEdit_algorithm_name = QtWidgets.QLineEdit(self.groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setObjectName("lineEdit")
-        self.verticalLayout.addWidget(self.lineEdit)
+        self.lineEdit_algorithm_name.setFont(font)
+        self.lineEdit_algorithm_name.setObjectName("lineEdit_algorithm_name")
+        self.verticalLayout.addWidget(self.lineEdit_algorithm_name)
         self.label_2 = QtWidgets.QLabel(self.groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -137,12 +137,18 @@ class Ui_MainWindow(object):
         self.pushButton_delete_input_parameters.setFont(font)
         self.pushButton_delete_input_parameters.setObjectName("pushButton_delete_input_parameters")
         self.verticalLayout_2.addWidget(self.pushButton_delete_input_parameters)
-        self.pushButton_import = QtWidgets.QPushButton(self.tab_3)
+        self.pushButton_to_json = QtWidgets.QPushButton(self.tab_3)
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.pushButton_import.setFont(font)
-        self.pushButton_import.setObjectName("pushButton_import")
-        self.verticalLayout_2.addWidget(self.pushButton_import)
+        self.pushButton_to_json.setFont(font)
+        self.pushButton_to_json.setObjectName("pushButton_to_json")
+        self.verticalLayout_2.addWidget(self.pushButton_to_json)
+        self.pushButton_from_json = QtWidgets.QPushButton(self.tab_3)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_from_json.setFont(font)
+        self.pushButton_from_json.setObjectName("pushButton_from_json")
+        self.verticalLayout_2.addWidget(self.pushButton_from_json)
         self.gridLayout_3.addLayout(self.verticalLayout_2, 0, 0, 1, 1)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
@@ -262,7 +268,8 @@ class Ui_MainWindow(object):
         self.pushButton_add_input_parameters.setText(_translate("MainWindow", "Add Input Parameter"))
         self.pushButton_add_struct.setText(_translate("MainWindow", "Add Struct"))
         self.pushButton_delete_input_parameters.setText(_translate("MainWindow", "Delete Selected "))
-        self.pushButton_import.setText(_translate("MainWindow", "Import"))
+        self.pushButton_to_json.setText(_translate("MainWindow", "to json"))
+        self.pushButton_from_json.setText(_translate("MainWindow", "from json"))
         self.label_output_parameters.setText(_translate("MainWindow", "Output Parameters: 0"))
         self.pushButton_add_output_parameter.setText(_translate("MainWindow", "Add Output Parameter"))
         self.pushButton_delete_output_param.setText(_translate("MainWindow", "Delete Selected "))
@@ -271,150 +278,144 @@ class Ui_MainWindow(object):
         self.pushButton_get_diagram.setText(_translate("MainWindow", "Get Class Diagram"))
         self.pushButton_get_readme.setText(_translate("MainWindow", "Get Readme Text"))
         self.groupBox_3.setTitle(_translate("MainWindow", "Readme.md"))
-        self.plainTextEdit.setPlainText(
-            _translate(
-                "MainWindow",
-                ";lkdsjfl\n"
-                "ADSF\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "adsf\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "adsfads\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "asdfa\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "asdf\n"
-                "asdf\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "asdf\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "\n"
-                "adsf",
-            )
-        )
+        self.plainTextEdit.setPlainText(_translate("MainWindow", ";lkdsjfl\n"
+"ADSF\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"adsf\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"adsfads\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"asdfa\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"asdf\n"
+"asdf\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"asdf\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"adsf"))
         self.pushButton_generate_code.setText(_translate("MainWindow", "Generate Code"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Preview and Readme"))
 
 
 if __name__ == "__main__":
     import sys
-
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

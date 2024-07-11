@@ -28,7 +28,7 @@
         <item row="0" column="2">
          <widget class="QGroupBox" name="groupBox">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -247,14 +247,26 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_import">
+           <widget class="QPushButton" name="pushButton_to_json">
             <property name="font">
              <font>
               <pointsize>12</pointsize>
              </font>
             </property>
             <property name="text">
-             <string>Import</string>
+             <string>to json</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_from_json">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>from json</string>
             </property>
            </widget>
           </item>

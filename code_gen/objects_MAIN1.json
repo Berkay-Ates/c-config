@@ -1,0 +1,63 @@
+{
+    "name": "Algorithm",
+    "input_parameter_models": [],
+    "input_struct_parameter_model": [
+        {
+            "type": "str",
+            "name": "struct2",
+            "input_parameter_models": [
+                {
+                    "type_": "int",
+                    "name_": "S2Bir",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                },
+                {
+                    "type_": "int",
+                    "name_": "s2Iki",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": []
+        },
+        {
+            "type": "str",
+            "name": "struct3",
+            "input_parameter_models": [
+                {
+                    "type_": "int",
+                    "name_": "s3Bir",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": [
+                {
+                    "type": "str",
+                    "name": "ooooooooooooooooooooooooooooo",
+                    "input_parameter_models": [],
+                    "input_struct_parameter_models": [
+                        {
+                            "type": "str",
+                            "name": "uuuuuuuuuuuuuuuuuuuu",
+                            "input_parameter_models": [
+                                {
+                                    "type_": "float",
+                                    "name_": "uuuuuuuuuuuuuuuuuiiiii",
+                                    "is_parallel_": false,
+                                    "is_other_size_": false,
+                                    "is_init_": false
+                                }
+                            ],
+                            "input_struct_parameter_models": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

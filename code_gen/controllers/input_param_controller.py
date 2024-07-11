@@ -10,11 +10,11 @@ class InputParameterController(QWidget, InputParameterWidget):
 
     struct_signal = pyqtSignal(QObject)
 
-    def __init__(self):
+    def __init__(self, values: InputParameterModel = None):
         super().__init__()
         self.values = InputParameterModel()
         self.popup = None
-        self.init_window()
+        self.init_window(values)
 
         self.lineEdit_name.textChanged.connect(self.name_changed)
         self.comboBox_param_type.currentIndexChanged.connect(self.param_type_changed)
@@ -47,8 +47,12 @@ class InputParameterController(QWidget, InputParameterWidget):
             return
         self.values.set_is_other_size(False)
 
-    def init_window(self):
+    def init_window(self, values: InputParameterModel = None):
         self.setupUi(self)
+
+        if values is not None and isinstance(values, InputParameterModel):
+            self.values = values
+            self.lineEdit_name.setText(self.values.get_name())
 
         self.show_popup_info = False
         self.checkBox_init.installEventFilter(self)
