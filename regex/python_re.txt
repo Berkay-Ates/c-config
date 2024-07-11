@@ -1,0 +1,336 @@
+Elbette, Python'da regex işlemleri için kullanılan re kütüphanesi hakkında detaylı bir rehber sunabilirim. Bu rehberde temel kavramlardan ileri düzey konulara kadar birçok örnekle açıklamalarda bulunacağım.
+
+Python re Kütüphanesi
+Python'da regex işlemleri için kullanılan re kütüphanesi, metinlerde desen eşleştirme, ayıklama, ve değiştirme işlemleri yapmak için kullanılır. İşte bu kütüphaneyi kullanarak regex işlemlerini nasıl yapabileceğinizin detaylı bir açıklaması.
+
+Temel Fonksiyonlar ve Kullanım
+re.match():
+
+Metnin başında bir desen eşleşmesi arar.
+Eşleşme olursa bir Match nesnesi döner, aksi takdirde None döner.
+python
+Copy code
+import re
+
+pattern = r'\d+'  # Bir veya daha fazla rakam
+text = "123abc"
+match = re.match(pattern, text)
+if match:
+    print(match.group())  # 123
+re.search():
+
+Metnin herhangi bir yerinde bir desen eşleşmesi arar.
+İlk eşleşmeyi bulur ve bir Match nesnesi döner, aksi takdirde None döner.
+python
+Copy code
+import re
+
+pattern = r'\d+'  # Bir veya daha fazla rakam
+text = "abc123def"
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # 123
+re.findall():
+
+Metindeki tüm eşleşmeleri bir liste olarak döner.
+python
+Copy code
+import re
+
+pattern = r'\d+'  # Bir veya daha fazla rakam
+text = "abc123def456ghi789"
+matches = re.findall(pattern, text)
+print(matches)  # ['123', '456', '789']
+re.finditer():
+
+Metindeki tüm eşleşmeleri Match nesneleri olarak döner.
+Eşleşmeler üzerinde yineleme yapılabilir.
+python
+Copy code
+import re
+
+pattern = r'\d+'  # Bir veya daha fazla rakam
+text = "abc123def456ghi789"
+matches = re.finditer(pattern, text)
+for match in matches:
+    print(match.group())  # 123, 456, 789
+re.sub():
+
+Metindeki eşleşen desenleri belirtilen bir başka desenle değiştirir.
+python
+Copy code
+import re
+
+pattern = r'\d+'  # Bir veya daha fazla rakam
+text = "abc123def456ghi789"
+replaced_text = re.sub(pattern, '#', text)
+print(replaced_text)  # abc#def#ghi#
+re.split():
+
+Belirli bir desene göre metni böler ve bir liste olarak döner.
+python
+Copy code
+import re
+
+pattern = r'\d+'  # Bir veya daha fazla rakam
+text = "abc123def456ghi789"
+split_text = re.split(pattern, text)
+print(split_text)  # ['abc', 'def', 'ghi', '']
+Regex Desenleri ve Semboller
+Temel Karakter Sınıfları:
+
+. : Herhangi bir karakter.
+\d : Rakam (0-9).
+\D : Rakam olmayan karakter.
+\w : Alfasayısal karakterler ve alt çizgi (_).
+\W : Alfasayısal olmayan karakterler.
+\s : Boşluk karakteri (boşluk, tab, yeni satır vb.).
+\S : Boşluk olmayan karakterler.
+python
+Copy code
+import re
+
+pattern = r'\d'  # Bir rakam
+text = "abc123def"
+matches = re.findall(pattern, text)
+print(matches)  # ['1', '2', '3']
+Kuantumlayıcılar (Quantifiers):
+
+* : Sıfır veya daha fazla.
++ : Bir veya daha fazla.
+? : Sıfır veya bir.
+{n} : Tam olarak n kez.
+{n,} : En az n kez.
+{n,m} : En az n, en fazla m kez.
+python
+Copy code
+import re
+
+pattern = r'\d{2,4}'  # İki ila dört rakam
+text = "123 4567 89"
+matches = re.findall(pattern, text)
+print(matches)  # ['123', '4567']
+Anchorlar (Bağlayıcılar):
+
+^ : Satır başı.
+$ : Satır sonu.
+\b : Kelime sınırı.
+\B : Kelime sınırı olmayan yer.
+python
+Copy code
+import re
+
+pattern = r'^\d+'  # Satır başında bir veya daha fazla rakam
+text = "123abc\n456def"
+matches = re.findall(pattern, text, re.MULTILINE)
+print(matches)  # ['123', '456']
+Gruplar ve Alternasyon:
+
+(abc) : abc dizisini grup olarak alır.
+a|b : a veya b.
+python
+Copy code
+import re
+
+pattern = r'(abc|def)'  # 'abc' veya 'def'
+text = "abcdef"
+matches = re.findall(pattern, text)
+print(matches)  # ['abc', 'def']
+Lookahead ve Lookbehind:
+
+(?=...) : Pozitif Lookahead (ileriye doğru bakar ve ...'dan sonra olanları eşleştirir).
+(?!...) : Negatif Lookahead (ileriye doğru bakar ve ...'dan sonra olmayanları eşleştirir).
+(?<=...) : Pozitif Lookbehind (geriye doğru bakar ve ...'dan önce olanları eşleştirir).
+(?<!...) : Negatif Lookbehind (geriye doğru bakar ve ...'dan önce olmayanları eşleştirir).
+python
+Copy code
+import re
+
+# Lookahead Örneği
+pattern = r'\w+(?=@example\.com)'
+text = "Contact us at info@example.com"
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # info
+
+# Lookbehind Örneği
+pattern = r'(?<=@)\w+'
+text = "Contact us at info@example.com"
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # example
+Named Groups:
+
+(?P<name>...) : Grup için isim verir ve bu isimle gruba erişim sağlar.
+python
+Copy code
+import re
+
+pattern = r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'
+text = "2024-07-11"
+match = re.search(pattern, text)
+if match:
+    print(match.group('year'))  # 2024
+    print(match.group('month'))  # 07
+    print(match.group('day'))  # 11
+Regex ile Header Dosyasını Ayrıştırma
+Header dosyasını ayrıştırmak için re kütüphanesini kullanarak, struct tanımlarını ve iç içe yapıları çıkarmak mümkündür. İşte bu işlem için detaylı bir açıklama:
+
+Örnek Header Dosyası
+cpp
+Copy code
+// complex_example.h
+
+#ifndef COMPLEX_EXAMPLE_H
+#define COMPLEX_EXAMPLE_H
+
+struct InnerMostStruct {
+    // input parameters
+    int innerInput1;
+    float innerInput2;
+
+    // output parameters
+    double innerOutput1;
+};
+
+struct InnerStruct {
+    // input parameters
+    InnerMostStruct innerMost;
+    int input1;
+
+    // output parameters
+    float output1;
+};
+
+struct OuterStruct {
+    // input parameters
+    InnerStruct innerStruct;
+    int outerInput;
+
+    // output parameters
+    float outerOutput;
+};
+
+#endif // COMPLEX_EXAMPLE_H
+Regex ile Struct Tanımları ve Parametrelerini Çıkarma
+Python Kodu
+python
+Copy code
+import re
+import json
+
+def parse_struct_body(struct_body):
+    input_parameters = []
+    output_parameters = []
+    input_struct_parameters = []
+    output_struct_parameters = []
+    current_section = None
+
+    lines = struct_body.splitlines()
+    for line in lines:
+        line = line.strip()
+        if line:
+            if line.startswith('// input parameters'):
+                current_section = 'input_parameters'
+            elif line.startswith('// output parameters'):
+                current_section = 'output_parameters'
+            else:
+                member_pattern = re.compile(r'(\w+)\s+(\w+);')
+                member_match = member_pattern.match(line)
+                if member_match:
+                    type_, name = member_match.groups()
+                    parameter_info = {
+                        'type_': type_,
+                        'name_': name,
+                        'is_parallel_': False,
+                        'is_other_size_': False,
+                        'is_init_': False
+                    }
+                    if current_section == 'input_parameters':
+                        input_parameters.append(parameter_info)
+                    elif current_section == 'output_parameters':
+                        output_parameters.append(parameter_info)
+                else:
+                    struct_pattern = re.compile(r'(\w+)\s+(\w+);')
+                    struct_match = struct_pattern.match(line)
+                    if struct_match:
+                        type_, name = struct_match.groups()
+                        if current_section == 'input_parameters':
+                            input_struct_parameters.append(name)
+                        elif current_section == 'output_parameters':
+                            output_struct_parameters.append(name)
+
+    return input_parameters, output_parameters, input_struct_parameters, output_struct_parameters
+
+def parse_header_file(header_file_path):
+    with open(header_file_path, 'r') as file:
+        content = file.read()
+
+    struct_pattern = re.compile(r'struct\s+(\w+)\s*\{(.*?)\};', re.DOTALL)
+    matches = struct_pattern.findall(content)
+    
+    structs_info = {}
+    for match in matches:
+        struct_name, struct_body = match
+        input_parameters, output_parameters, input_struct_parameters, output_struct_parameters = parse_struct_body(struct_body)
+        structs_info[struct_name] = {
+            'input_parameters': input_parameters,
+            'output_parameters': output_parameters,
+            'input_struct_parameters': input_struct_parameters,
+            'output_struct_parameters': output_struct_parameters
+        }
+    
+    return structs_info
+
+def build_json_model(struct_name, structs_info):
+    struct_info = structs_info[struct_name]
+    input_parameter_models = struct_info['input_parameters']
+    output_parameter_models = struct_info['output_parameters']
+
+    input_struct_parameter_models = [
+        build_json_model(name, structs_info) for name in struct_info['input_struct_parameters']
+    ]
+    output_struct_parameter_models = [
+        build_json_model(name, structs_info) for name in struct_info['output_struct_parameters']
+    ]
+
+    return {
+        "type": "struct",
+        "name": struct_name,
+        "input_parameter_models": input_parameter_models,
+        "output_parameter_models": output_parameter_models,
+        "input_struct_parameter_models": input_struct_parameter_models,
+        "output_struct_parameter_models": output_struct_parameter_models
+    }
+
+def generate_json_model(structs_info):
+    top_level_structs = [k for k, v in structs_info.items() if not any(k in vs["input_struct_parameters"] or k in vs["output_struct_parameters"] for vs in structs_info.values())]
+    json_model = {
+        "name": "Algorithm",
+        "input_parameter_models": [],
+        "output_parameter_models": [],
+        "input_struct_parameter_models": [],
+        "output_struct_parameter_models": []
+    }
+    for struct_name in top_level_structs:
+        json_model["input_struct_parameter_models"].append(build_json_model(struct_name, structs_info))
+    return json_model
+
+header_file_path = 'complex_example.h'
+structs_info = parse_header_file(header_file_path)
+json_model = generate_json_model(structs_info)
+
+# JSON modelini ekranda gösterme
+print(json.dumps(json_model, indent=4))
+
+# JSON dosyasına kaydetme
+with open('structs_info.json', 'w') as json_file:
+    json.dump(json_model, json_file, indent=4)
+Regex Bilgisiyle Yapılabilecekler
+Regex bilgisiyle sadece header dosyalarını değil, birçok farklı türde metni ayrıştırabilir, değiştirebilir veya analiz edebilirsiniz. İşte regex bilgisiyle yapılabilecek bazı diğer işlemler:
+
+Log dosyalarından belirli bilgileri çıkarmak.
+Web sayfalarındaki verileri ayıklamak (web scraping).
+Metinlerde belirli desenleri arayıp değiştirmek (örneğin, e-posta adreslerini maskelemek).
+Dosya adlarını düzenlemek ve yeniden adlandırmak.
+Regex, metin işleme ve analizinde güçlü bir araçtır ve doğru kullanıldığında çok verimli ve esnek çözümler sunar. Bu rehberde öğrendiğiniz bilgileri kullanarak kendi projelerinizde regex'in gücünden faydalanabilirsiniz.
