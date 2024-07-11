@@ -1,0 +1,69 @@
+{
+    "name": "Algorithm",
+    "input_parameter_models": [],
+    "input_struct_parameter_models": [
+        {
+            "type": "str",
+            "name": "InnerMostStruct",
+            "input_parameter_models": [
+                {
+                    "type_": "int",
+                    "name_": "innerInput1",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                },
+                {
+                    "type_": "float",
+                    "name_": "innerInput2",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": []
+        },
+        {
+            "type": "str",
+            "name": "InnerStruct",
+            "input_parameter_models": [
+                {
+                    "type_": "InnerMostStruct",
+                    "name_": "innerMost",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                },
+                {
+                    "type_": "int",
+                    "name_": "input1",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": []
+        },
+        {
+            "type": "str",
+            "name": "OuterStruct",
+            "input_parameter_models": [
+                {
+                    "type_": "InnerStruct",
+                    "name_": "innerStruct",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                },
+                {
+                    "type_": "int",
+                    "name_": "outerInput",
+                    "is_parallel_": false,
+                    "is_other_size_": false,
+                    "is_init_": false
+                }
+            ],
+            "input_struct_parameter_models": []
+        }
+    ]
+}

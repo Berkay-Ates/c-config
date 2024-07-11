@@ -1,0 +1,56 @@
+{
+    "InnerMostStruct": {
+        "input_parameters": [
+            {
+                "type": "int",
+                "name": "innerInput1"
+            },
+            {
+                "type": "float",
+                "name": "innerInput2"
+            }
+        ],
+        "output_parameters": [
+            {
+                "type": "double",
+                "name": "innerOutput1"
+            }
+        ]
+    },
+    "InnerStruct": {
+        "input_parameters": [
+            {
+                "type": "InnerMostStruct",
+                "name": "innerMost"
+            },
+            {
+                "type": "int",
+                "name": "input1"
+            }
+        ],
+        "output_parameters": [
+            {
+                "type": "float",
+                "name": "output1"
+            }
+        ]
+    },
+    "OuterStruct": {
+        "input_parameters": [
+            {
+                "type": "InnerStruct",
+                "name": "innerStruct"
+            },
+            {
+                "type": "int",
+                "name": "outerInput"
+            }
+        ],
+        "output_parameters": [
+            {
+                "type": "float",
+                "name": "outerOutput"
+            }
+        ]
+    }
+}

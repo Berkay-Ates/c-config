@@ -1,0 +1,291 @@
+Regex ve string işleme konuları oldukça geniştir ve header dosyası gibi karmaşık yapıları ayrıştırmak için derinlemesine bilgi gerektirir. İşte bu konuları adım adım ve detaylı örneklerle açıklayan bir rehber:
+
+Regex (Regular Expressions) ve String İşleme
+Regex Nedir?
+Regex, metinlerde belirli desenleri tanımak ve işlemek için kullanılan bir dildir. Bu desenler, metin arama, değiştirme ve ayrıştırma gibi işlemler için kullanılır.
+
+Temel Regex Kavramları
+Karakterler ve Karakter Sınıfları:
+
+. : Herhangi bir karakteri temsil eder.
+\d : Herhangi bir rakam karakteri (0-9).
+\D : Rakam olmayan herhangi bir karakter.
+\w : Alfasayısal karakterler ve alt çizgi (_).
+\W : Alfasayısal olmayan karakterler.
+\s : Boşluk karakteri (boşluk, tab, yeni satır vb.).
+\S : Boşluk olmayan karakterler.
+[abc] : a, b, veya c karakterlerinden herhangi biri.
+[^abc] : a, b, veya c dışında herhangi bir karakter.
+Kuantumlayıcılar (Quantifiers):
+
+* : Sıfır veya daha fazla.
++ : Bir veya daha fazla.
+? : Sıfır veya bir.
+{n} : Tam olarak n kez.
+{n,} : En az n kez.
+{n,m} : En az n, en fazla m kez.
+Anchorlar (Bağlayıcılar):
+
+^ : Satır başı.
+$ : Satır sonu.
+\b : Kelime sınırı.
+\B : Kelime sınırı olmayan yer.
+Gruplar ve Alternasyon:
+
+(abc) : abc dizisini grup olarak alır.
+a|b : a veya b.
+Temel Regex Kullanımı
+Python'da regex işlemleri için re modülü kullanılır. İşte bazı temel kullanım örnekleri:
+
+python
+Copy code
+import re
+
+# Temel Desen Eşleşme
+pattern = r'\d+'  # Bir veya daha fazla rakam
+text = "The year is 2024"
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # 2024
+
+# Gruplama ve Yakalama
+pattern = r'(\d{4})-(\d{2})-(\d{2})'  # YYYY-MM-DD formatında tarih
+text = "2024-07-11"
+match = re.search(pattern, text)
+if match:
+    print(match.groups())  # ('2024', '07', '11')
+
+# Alternasyon (Alternation)
+pattern = r'apple|banana'
+text = "I like apple and banana"
+matches = re.findall(pattern, text)
+print(matches)  # ['apple', 'banana']
+
+# Karakter Sınıfları ve Kuantumlayıcılar
+pattern = r'\w+@\w+\.\w+'
+text = "Contact us at info@example.com"
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # info@example.com
+Gelişmiş Regex Kullanımı
+Lookahead ve Lookbehind:
+(?=...) : Pozitif Lookahead (ileriye doğru bakar ve ...'dan sonra olanları eşleştirir).
+(?!...) : Negatif Lookahead (ileriye doğru bakar ve ...'dan sonra olmayanları eşleştirir).
+(?<=...) : Pozitif Lookbehind (geriye doğru bakar ve ...'dan önce olanları eşleştirir).
+(?<!...) : Negatif Lookbehind (geriye doğru bakar ve ...'dan önce olmayanları eşleştirir).
+python
+Copy code
+# Lookahead Örneği
+pattern = r'\w+(?=@example\.com)'
+text = "Contact us at info@example.com"
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # info
+
+# Lookbehind Örneği
+pattern = r'(?<=@)\w+'
+text = "Contact us at info@example.com"
+match = re.search(pattern, text)
+if match:
+    print(match.group())  # example
+Named Groups:
+(?P<name>...) : Grup için isim verir ve bu isimle gruba erişim sağlar.
+python
+Copy code
+pattern = r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})'
+text = "2024-07-11"
+match = re.search(pattern, text)
+if match:
+    print(match.group('year'))  # 2024
+    print(match.group('month'))  # 07
+    print(match.group('day'))  # 11
+Header Parsing için Regex Kullanımı
+Header dosyalarını ayrıştırmak için regex kullanarak, struct tanımlarını ve iç içe yapıları çıkarmak mümkündür. İşte bu işlem için detaylı bir açıklama:
+
+Örnek Header Dosyası
+cpp
+Copy code
+// complex_example.h
+
+#ifndef COMPLEX_EXAMPLE_H
+#define COMPLEX_EXAMPLE_H
+
+struct InnerMostStruct {
+    // input parameters
+    int innerInput1;
+    float innerInput2;
+
+    // output parameters
+    double innerOutput1;
+};
+
+struct InnerStruct {
+    // input parameters
+    InnerMostStruct innerMost;
+    int input1;
+
+    // output parameters
+    float output1;
+};
+
+struct OuterStruct {
+    // input parameters
+    InnerStruct innerStruct;
+    int outerInput;
+
+    // output parameters
+    float outerOutput;
+};
+
+#endif // COMPLEX_EXAMPLE_H
+Regex ile Struct Tanımları ve Parametrelerini Çıkarma
+Struct Tanımlarını Bulma:
+
+Struct tanımları, struct <struct_name> { ... } şeklinde olur.
+İçeriği struct ve } arasında yer alır.
+Parametre ve İç Struct Tanımları:
+
+Parametreler type name; formatındadır.
+İç struct'lar da aynı formatta tanımlanır.
+Python Kodu
+python
+Copy code
+import re
+import json
+
+def parse_struct_body(struct_body):
+    input_parameters = []
+    output_parameters = []
+    input_struct_parameters = []
+    output_struct_parameters = []
+    current_section = None
+
+    lines = struct_body.splitlines()
+    for line in lines:
+        line = line.strip()
+        if line:
+            if line.startswith('// input parameters'):
+                current_section = 'input_parameters'
+            elif line.startswith('// output parameters'):
+                current_section = 'output_parameters'
+            elif line.startswith('// input struct parameters'):
+                current_section = 'input_struct_parameters'
+            elif line.startswith('// output struct parameters'):
+                current_section = 'output_struct_parameters'
+            else:
+                member_pattern = re.compile(r'(\w+)\s+(\w+);')
+                member_match = member_pattern.match(line)
+                if member_match and current_section:
+                    member_type = member_match.group(1)
+                    member_name = member_match.group(2)
+                    param_info = {
+                        "type_": member_type,
+                        "name_": member_name,
+                        "is_parallel_": False,
+                        "is_other_size_": False,
+                        "is_init_": False
+                    }
+                    if current_section == 'input_parameters':
+                        input_parameters.append(param_info)
+                    elif current_section == 'output_parameters':
+                        output_parameters.append(param_info)
+                    elif current_section == 'input_struct_parameters':
+                        input_struct_parameters.append(param_info)
+                    elif current_section == 'output_struct_parameters':
+                        output_struct_parameters.append(param_info)
+    return input_parameters, output_parameters, input_struct_parameters, output_struct_parameters
+
+def parse_header_file(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    structs = {}
+
+    struct_pattern = re.compile(r'struct\s+(\w+)\s*{([^}]*)}', re.DOTALL)
+    matches = struct_pattern.findall(content)
+
+    for match in matches:
+        struct_name = match[0]
+        struct_body = match[1].strip()
+        input_parameters, output_parameters, input_struct_parameters, output_struct_parameters = parse_struct_body(struct_body)
+
+        structs[struct_name] = {
+            "input_parameters": input_parameters,
+            "output_parameters": output_parameters,
+            "input_struct_parameters": input_struct_parameters,
+            "output_struct_parameters": output_struct_parameters
+        }
+
+    return structs
+
+def build_json_model(struct_name, structs_info):
+    struct_info = structs_info[struct_name]
+    input_parameter_models = struct_info["input_parameters"]
+    output_parameter_models = struct_info["output_parameters"]
+    input_struct_parameter_models = [build_json_model(inner_struct_name, structs_info) for inner_struct_name in struct_info["input_struct_parameters"]]
+    output_struct_parameter_models = [build_json_model(inner_struct_name, structs_info) for inner_struct_name in struct_info["output_struct_parameters"]]
+
+    return {
+        "type": "str",
+        "name": struct_name,
+        "input_parameter_models": input_parameter_models,
+        "output_parameter_models": output_parameter_models,
+        "input_struct_parameter_models": input_struct_parameter_models,
+        "output_struct_parameter_models": output_struct_parameter_models
+    }
+
+def generate_json_model(structs_info):
+    top_level_structs = [k for k, v in structs_info.items() if not any(k in vs["input_struct_parameters"] or k in vs["output_struct_parameters"] for vs in structs_info.values())]
+    json_model = {
+        "name": "Algorithm",
+        "input_parameter_models": [],
+        "output_parameter_models": [],
+        "input_struct_parameter_models": [],
+        "output_struct_parameter_models": []
+    }
+    for struct_name in top_level_structs:
+        json_model["input_struct_parameter_models"].append(build_json_model(struct_name, structs_info))
+    return json_model
+
+# Test etmek için örnek header dosyası yolunu belirtin
+header_file_path = 'complex_example.h'
+structs_info = parse_header_file(header_file_path)
+json_model = generate_json_model(structs_info)
+
+# JSON modelini ekranda gösterme
+print(json.dumps(json_model, indent=4))
+
+# JSON dosyasına kaydetme
+with open('structs_info.json', 'w') as json_file:
+    json.dump(json_model, json_file, indent=4)
+Ek Bilgiler ve İpuçları
+String İşleme Yöntemleri
+strip(): Başındaki ve sonundaki boşlukları kaldırır.
+split(): Belirli bir ayırıcıya göre metni böler.
+join(): Bir listeyi belirli bir ayırıcı ile birleştirir.
+replace(): Metin içinde belirli bir deseni başka bir desenle değiştirir.
+find() / index(): Belirli bir deseni arar ve konumunu döner.
+python
+Copy code
+text = "  Hello, World!  "
+print(text.strip())  # "Hello, World!"
+
+text = "apple,banana,cherry"
+print(text.split(','))  # ["apple", "banana", "cherry"]
+
+words = ["Hello", "World"]
+print(" ".join(words))  # "Hello World"
+
+text = "I like bananas"
+print(text.replace("bananas", "apples"))  # "I like apples"
+
+text = "Find the needle in the haystack"
+print(text.find("needle"))  # 10
+print(text.index("needle"))  # 10
+Bu bilgilerle, header dosyalarını ayrıştırma ve karmaşık yapıdaki parametreleri JSON formatında dışa aktarma işlemlerini başarıyla gerçekleştirebilirsiniz. Regex ve string işlemleri konusundaki bu derinlemesine bilgiler, bu tür görevleri kolayca ve etkili bir şekilde yapmanızı sağlar.
+
+
+
+
+
+
